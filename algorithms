@@ -1,271 +1,436 @@
-AIML PRACTICAL EXAM — ALGORITHM VIVA PREPARATION
+1. 8051 — Arithmetic Operations
 
-Memorize these algorithms in the same easiest → hardest order.
+ORG 0000H
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🥇 EXP 01 — BFS & DFS
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+MOV A,#25H
+MOV R0,#15H
 
-Algorithm:
-1. Define the graph using nodes and their connected edges.
-2. Select the starting node for traversal.
-3. For BFS, use a queue to visit nodes level by level.
-4. For DFS, use recursion or a stack to visit nodes depth-wise.
-5. Display the order in which the nodes are visited.
+ADD A,R0
+MOV R1,A
 
-Viva Keywords:
-Graph → Start Node → Queue → Stack/Recursion → Traversal
+MOV A,#25H
+CLR C
+SUBB A,R0
+MOV R2,A
 
+MOV A,#25H
+MOV B,#15H
+MUL AB
+MOV R3,A
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🥈 EXP 02 — A* SEARCH
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+MOV A,#25H
+MOV B,#15H
+DIV AB
+MOV R4,A
+MOV R5,B
 
-Algorithm:
-1. Define the graph with nodes, edge costs, and heuristic values.
-2. Select the start node and destination node.
-3. Calculate f(n) = g(n) + h(n) for each available node.
-4. Select the node with the lowest f(n) and continue until the goal is reached.
-5. Display the optimal path and its total cost.
+HERE: SJMP HERE
+END
 
-Viva Keywords:
-g(n) → h(n) → f(n) → Lowest Cost → Optimal Path
 
+---
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🥉 EXP 09 — K-MEANS CLUSTERING
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+2. 8051 — Logical Operations
 
-Algorithm:
-1. Load the Iris dataset and select the required features.
-2. Choose 3 clusters and initialize their centroids.
-3. Assign each data point to the nearest centroid.
-4. Recalculate the centroids and repeat until the clusters stabilize.
-5. Calculate the Silhouette Score and plot the resulting clusters.
+ORG 0000H
 
-Viva Keywords:
-Iris → 3 Clusters → Centroid → Assignment → Silhouette Score
+MOV A,#0F0H
+ANL A,#0AAH
+MOV R1,A
 
+MOV A,#0F0H
+ORL A,#0AAH
+MOV R2,A
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-4️⃣ EXP 03 — NAIVE BAYES
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+MOV A,#0F0H
+XRL A,#0AAH
+MOV R3,A
 
-Algorithm:
-1. Load the heart disease dataset and separate the features and target.
-2. Split the data into 75% training and 25% testing sets.
-3. Create and train a Gaussian Naive Bayes classifier.
-4. Predict the target values and calculate Accuracy and F1 Score.
-5. Generate the Confusion Matrix and ROC Curve with AUC.
+MOV A,#0F0H
+ANL A,#0AAH
+CPL A
+MOV R4,A
 
-Viva Keywords:
-Heart Dataset → 75/25 Split → Gaussian NB → Prediction → ROC-AUC
+MOV A,#0F0H
+ORL A,#0AAH
+CPL A
+MOV R5,A
 
+MOV A,#0F0H
+CPL A
+MOV R6,A
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-5️⃣ EXP 06 — DECISION TREE & RANDOM FOREST
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+HERE: SJMP HERE
+END
 
-DECISION TREE
 
-Algorithm:
-1. Load the Student Performance dataset and remove the student_id column.
-2. Separate the input features and final_grade, then encode categorical values.
-3. Split the data into training and testing sets.
-4. Train a Decision Tree Classifier and predict the test values.
-5. Evaluate the model using Accuracy, Precision, Recall, F1 Score, Confusion Matrix and ROC Curve.
+---
 
-Viva Keywords:
-Student Data → Encoding → Split → Decision Tree → Evaluation
+3. 8051 — 1 kHz Square Wave Using Timer 0
 
+ORG 0000H
 
-RANDOM FOREST
+MOV TMOD,#01H
 
-Algorithm:
-1. Load and preprocess the Student Performance dataset.
-2. Separate the features and target and encode the required values.
-3. Split the dataset into training and testing sets.
-4. Train a Random Forest Classifier using multiple decision trees.
-5. Predict the test values and evaluate the model using classification metrics and ROC Curve.
+AGAIN:
+MOV TH0,#0FEH
+MOV TL0,#0CH
+SETB TR0
 
-Viva Keywords:
-Multiple Trees → Bootstrap → Voting → Random Forest → Evaluation
+WAIT:
+JNB TF0,WAIT
 
+CLR TR0
+CLR TF0
+CPL P1.0
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-6️⃣ EXP 07 — SVM
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SJMP AGAIN
+END
 
-Algorithm:
-1. Load the heart disease dataset and separate the features and target.
-2. Split the dataset into 75% training and 25% testing data.
-3. Standardize the features and create a linear SVM classifier.
-4. Train the SVM and predict the test data.
-5. Calculate Accuracy, F1 Score, Confusion Matrix and ROC-AUC.
 
-Viva Keywords:
-Heart Dataset → Standardization → Hyperplane → Linear SVM → ROC-AUC
+---
 
+4. 8051 — 25% Duty-Cycle Square Wave
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-7️⃣ EXP 08 — ENSEMBLING
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ORG 0000H
 
-Algorithm:
-1. Load the heart disease dataset and separate the features and target.
-2. Split the data into 75% training and 25% testing sets.
-3. Create Decision Tree, Random Forest and SVM base models.
-4. Combine the models using a Soft Voting Classifier and train it.
-5. Evaluate the ensemble using Accuracy, F1 Score, Confusion Matrix and ROC-AUC.
+MOV TMOD,#01H
 
-Viva Keywords:
-DT + RF + SVM → Base Models → Soft Voting → Ensemble → Evaluation
+AGAIN:
 
+SETB P1.0
+MOV TH0,#0FFH
+MOV TL0,#06H
+SETB TR0
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-8️⃣ EXP 05 — LOWESS REGRESSION
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+W1: JNB TF0,W1
 
-Algorithm:
-1. Generate the input data containing a linear trend with noise.
-2. Assign weights to nearby data points based on their distance.
-3. Fit a local weighted regression around each data point.
-4. Repeat the process for the specified number of iterations to reduce the effect of outliers.
-5. Plot the LOWESS curve along with the original data and linear regression line.
+CLR TR0
+CLR TF0
 
-Viva Keywords:
-Local → Weights → Nearby Points → Smoothing → Curve
+CLR P1.0
+MOV TH0,#0FDH
+MOV TL0,#12H
+SETB TR0
 
+W2: JNB TF0,W2
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-9️⃣ EXP 10 — EM USING GMM
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+CLR TR0
+CLR TF0
 
-Algorithm:
-1. Load the Iris dataset and standardize the feature values.
-2. Initialize a Gaussian Mixture Model with 3 components.
-3. Perform the Expectation step to calculate the probability of each point belonging to each cluster.
-4. Perform the Maximization step to update the Gaussian parameters until convergence.
-5. Predict the clusters and evaluate them using Accuracy, Precision, Recall, F1 Score and Silhouette Score.
+SJMP AGAIN
+END
 
-Viva Keywords:
-GMM → Expectation → Maximization → Convergence → Clusters
 
+---
 
-⭐ MOST IMPORTANT VIVA QUESTION
+5. 8051 — LED Pattern
 
-Question:
-What is EM?
+ORG 0000H
 
-Answer:
-Expectation-Maximization is an iterative method that estimates hidden cluster assignments and updates model parameters until convergence.
+AGAIN:
 
+MOV P1,#01H
+ACALL DELAY
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🔟 EXP 04 — BAYESIAN NETWORK
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+MOV P1,#02H
+ACALL DELAY
 
-Algorithm:
-1. Define the variables required for the Bayesian Network, such as age, gender and heart disease.
-2. Assign probability distributions and prior probabilities to the variables.
-3. Construct the Bayesian Network using the defined variables and relationships.
-4. Use observed patient information to update the probability of heart disease.
-5. Display the estimated probability based on the given evidence.
+MOV P1,#03H
+ACALL DELAY
 
-Viva Keywords:
-Variables → Prior → Relationship → Evidence → Posterior Probability
+MOV P1,#00H
+ACALL DELAY
 
+SJMP AGAIN
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-1️⃣1️⃣ EXP 11 — NEURAL NETWORK / MNIST
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+DELAY:
+MOV R6,#255
+D1: MOV R7,#255
+D2: DJNZ R7,D2
+DJNZ R6,D1
+RET
 
-Algorithm:
-1. Load the MNIST handwritten digit dataset and preprocess the images.
-2. Flatten the 28×28 images and normalize the pixel values.
-3. Build a neural network with dense layers, ReLU activation and a Softmax output layer.
-4. Train the model using categorical cross-entropy and the Adam optimizer.
-5. Evaluate the model and display accuracy/loss graphs and predicted digits.
+END
 
-Viva Keywords:
-MNIST → 28×28 → Flatten → Normalize → ReLU → Softmax
 
+---
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-1️⃣2️⃣ EXP 12 — DEEP LEARNING FACE DETECTION
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+6. LPC2148 — LED Blink
 
-Algorithm:
-1. Load the pre-trained face detection, age prediction and gender prediction models.
-2. Read the input image and convert it into a suitable input blob.
-3. Detect faces and extract the detected face regions from the image.
-4. Pass each face region to the age and gender networks for prediction.
-5. Display the detected face with the predicted age group and gender.
+#include <LPC214x.h>
 
-Viva Keywords:
-Pre-trained Models → Blob → Face Detection → Age/Gender Prediction → Display
+void delay(void)
+{
+    int i;
+    for(i=0;i<1000000;i++);
+}
 
+int main()
+{
+    IODIR0 = 0x80002000;
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🧠 ONE-PAGE VERSION TO MEMORIZE
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    while(1)
+    {
+        IOCLR0 = 0x80002000;
+        delay();
 
-If you have very little time, memorize these keyword chains:
+        IOSET0 = 0x80002000;
+        delay();
+    }
+}
 
-EXP 01 — BFS & DFS
-Graph → Start → Queue/Stack → Visit → Display
 
-EXP 02 — A*
-Graph → Start → f = g + h → Lowest f → Path
+---
 
-EXP 09 — K-Means
-Iris → 3 Clusters → Assign → Centroid → Silhouette
+7. LPC2148 — Stepper Motor Clockwise
 
-EXP 03 — Naive Bayes
-Data → Split → Gaussian NB → Predict → Evaluate
+#include <LPC214x.h>
 
-EXP 06 — Decision Tree + Random Forest
-Data → Encode → Split → Train → Evaluate
+void delay(void)
+{
+    int i;
+    for(i=0;i<10000;i++);
+}
 
-EXP 07 — SVM
-Data → Split → Scale → SVM → Evaluate
+void stepper(void)
+{
+    IOCLR1 = 0x00FF0000;
+    IOSET1 = 0x00040000;
+    delay();
 
-EXP 08 — Ensemble
-DT + RF + SVM → Voting → Train → Predict → Evaluate
+    IOCLR1 = 0x00FF0000;
+    IOSET1 = 0x00060000;
+    delay();
 
-EXP 05 — LOWESS
-Data → Weights → Local Fit → Smooth → Plot
+    IOCLR1 = 0x00FF0000;
+    IOSET1 = 0x00070000;
+    delay();
 
-EXP 10 — EM/GMM
-Data → GMM → Expectation → Maximization → Converge
+    IOCLR1 = 0x00FF0000;
+    IOSET1 = 0x00050000;
+    delay();
+}
 
-EXP 04 — Bayesian Network
-Variables → Prior → Network → Evidence → Probability
+int main()
+{
+    IODIR1 = 0xFFFFFFFF;
 
-EXP 11 — Neural Network
-MNIST → Flatten → Normalize → Train → Predict
+    while(1)
+        stepper();
+}
 
-EXP 12 — Face Detection
-Models → Image → Blob → Detect → Predict
 
+---
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🚨 VIVA PRIORITY
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+8. LPC2148 — Stepper Motor 90° / 180°
 
-If they are giving 1 mark for the algorithm, do not memorize all the sentences first.
+#include <LPC214x.h>
 
-Memorize the 5-step chain for each experiment.
+void delay(void)
+{
+    int i;
+    for(i=0;i<10000;i++);
+}
 
-Example:
+void stepCW(void)
+{
+    IOSET1=0x40000; delay();
+    IOSET1=0x60000; delay();
+    IOSET1=0x70000; delay();
+    IOSET1=0x50000; delay();
+}
 
-Question:
-What is the algorithm for SVM?
+void stepCCW(void)
+{
+    IOSET1=0x50000; delay();
+    IOSET1=0x70000; delay();
+    IOSET1=0x60000; delay();
+    IOSET1=0x40000; delay();
+}
 
-Immediately recall:
+int main()
+{
+    int i;
 
-Load → Split → Standardize → Train SVM → Evaluate
+    IODIR1=0xFFFFFFFF;
 
-Then expand each step into one sentence.
+    for(i=0;i<50;i++)
+        stepCW();
 
-This is much safer than trying to remember a 10–12 step algorithm word-for-word.
+    delay();
+
+    for(i=0;i<100;i++)
+        stepCCW();
+
+    while(1);
+}
+
+
+---
+
+9. LPC2148 — 4×4 Matrix Keypad
+
+#include <LPC214x.h>
+#include "mat_7seg.h"
+
+int main()
+{
+    unsigned int key;
+
+    init_Matrix_7seg();
+    clearall_7seg();
+
+    while(1)
+    {
+        key = catch_key();
+
+        if(key != 0)
+            Alpha_Dispay(4,key);
+    }
+}
+
+
+---
+
+10. Raspberry Pi — LED Blink
+
+import RPi.GPIO as GPIO
+import time
+
+LED = 17
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(LED, GPIO.OUT)
+
+while True:
+    GPIO.output(LED, 1)
+    time.sleep(1)
+
+    GPIO.output(LED, 0)
+    time.sleep(1)
+
+
+---
+
+11. Raspberry Pi — IR Sensor
+
+import RPi.GPIO as GPIO
+import time
+
+IR = 17
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(IR, GPIO.IN)
+
+while True:
+    if GPIO.input(IR) == 0:
+        print("Object Detected")
+    else:
+        print("No Object")
+
+    time.sleep(0.5)
+
+
+---
+
+12. Raspberry Pi — Ultrasonic Sensor
+
+import RPi.GPIO as GPIO
+import time
+
+TRIG = 23
+ECHO = 24
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(TRIG, GPIO.OUT)
+GPIO.setup(ECHO, GPIO.IN)
+
+while True:
+    GPIO.output(TRIG, 0)
+    time.sleep(0.5)
+
+    GPIO.output(TRIG, 1)
+    time.sleep(0.00001)
+    GPIO.output(TRIG, 0)
+
+    while GPIO.input(ECHO) == 0:
+        start = time.time()
+
+    while GPIO.input(ECHO) == 1:
+        end = time.time()
+
+    distance = (end-start) * 17150
+
+    print("Distance:", round(distance,2), "cm")
+
+
+---
+
+13. ESP32 — Bluetooth Serial Communication
+
+#include "BluetoothSerial.h"
+
+BluetoothSerial BT;
+
+void setup()
+{
+    Serial.begin(9600);
+    BT.begin("ESP32_BT");
+}
+
+void loop()
+{
+    if(BT.available())
+    {
+        char c = BT.read();
+
+        Serial.print(c);
+        BT.print(c);
+    }
+}
+
+
+---
+
+14A. LPC2148 — ADC
+
+#include <LPC214x.h>
+
+volatile unsigned int adc_value;
+
+int main()
+{
+    PINSEL1 |= 0x04000000;
+
+    AD0CR = 0x00200204;
+
+    while(1)
+    {
+        AD0CR |= (1<<24);
+
+        while(!(AD0DR2 & (1<<31)));
+
+        adc_value = (AD0DR2 >> 6) & 0x3FF;
+    }
+}
+
+
+---
+
+14B. LPC2148 — DAC
+
+#include <LPC214x.h>
+
+int main()
+{
+    int i;
+
+    PINSEL1 |= 0x00080000;
+
+    while(1)
+    {
+        for(i=0;i<1024;i++)
+            DACR = i << 6;
+    }
+}
